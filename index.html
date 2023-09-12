@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet">
+
+</head>
+<body>
+    
+    <div class="container">
+        
+        <div class="header">
+            <div class="header-container">
+                <h1>library</h1>
+                <button type="button">Remove all</button>
+            </div>
+        </div>
+        <div class="content">
+            <button class="add-book">+ Add book</button>
+            <div class="book-grid">
+                <div class="card">
+                    <div class="title">"Title"</div>
+                    <div class="author">Author</div>
+                    <div class="pages-read">99</div>
+                    <div class="button-group">
+                        <button class="have-read">Not Read</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="title">"Titleaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"</div>
+                    <div class="author">Author</div>
+                    <div class="pages-read">99</div>
+                    <div class="button-group">
+                        <button class="have-read">Not Read</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-container">
+                <p>Designed by Cashton Holbert</p>
+                <p>ICON</p>
+            </div>
+        </footer>
+
+        <div id="modal-new-book" class="modal-new-book-container">
+            <div class="modal-new-book-content">
+                <form action="" method="">
+                    <h3>Add new book</h3>
+                    <input type="text" id="title" name="title" placeholder="title">
+                    <input type="text" id="author" name="author" placeholder="author"> 
+                    <input type="number" id="pages" name="total-pages" placeholder="total pages" min="0">
+                    <div>
+                        <label for="have-read">Have Read? </label>
+                        <input type="checkbox" name="have-read" checked="false">
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
