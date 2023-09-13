@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="script.js"></script>
+    <title>Library</title>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
@@ -22,9 +22,9 @@
             </div>
         </div>
         <div class="content">
-            <button class="add-book">+ Add book</button>
-            <div class="book-grid">
-                <div class="card">
+            <button class="add-book" id="addBook">+ Add book</button>
+            <div class="book-grid" id="bookGrid">
+                <div class="book-card">
                     <div class="title">"Title"</div>
                     <div class="author">Author</div>
                     <div class="pages-read">99</div>
@@ -33,10 +33,10 @@
                         <button class="delete">Delete</button>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="title">"Titleaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"</div>
-                    <div class="author">Author</div>
-                    <div class="pages-read">99</div>
+                <div class="book-card">
+                    <p>"Titleaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"</p>
+                    <p>Author</p>
+                    <p>99</p>
                     <div class="button-group">
                         <button class="have-read">Not Read</button>
                         <button class="delete">Delete</button>
@@ -48,21 +48,21 @@
         </div>
         <footer class="footer">
             <div class="footer-container">
-                <p>Designed by Cashton Holbert</p>
-                <p>ICON</p>
+                <p>Made by Cashton Holbert</p>
+                <a href="https://github.com/cashholb/library"><img src="./github-mark.png" alt="github logo that links to cashholb's github"></a>
             </div>
         </footer>
 
-        <div id="modal-new-book" class="modal-new-book-container">
+        <div id="modalNewBook" class="modal-new-book-container">
             <div class="modal-new-book-content">
-                <form action="" method="">
+                <form action="" method="" id="newBookForm">
                     <h3>Add new book</h3>
                     <input type="text" id="title" name="title" placeholder="title">
                     <input type="text" id="author" name="author" placeholder="author"> 
                     <input type="number" id="pages" name="total-pages" placeholder="total pages" min="0">
                     <div>
-                        <label for="have-read">Have Read? </label>
-                        <input type="checkbox" name="have-read" checked="false">
+                        <label for="haveRead">Have Read? </label>
+                        <input type="checkbox" id="haveRead" name="have-read" checked="false">
                     </div>
                     <button type="submit">Submit</button>
                 </form>

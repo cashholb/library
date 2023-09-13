@@ -80,9 +80,10 @@ button, input {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
+    justify-content: center;
 }
 
-.card {
+.book-card {
     background-color: rgb(var(--header-rgb));
     border-radius: var(--border-radius);
     box-shadow: 0rem 0.2rem 2rem rgba(var(--shadow-color), 0.3);
@@ -116,10 +117,17 @@ button, input {
     gap: 10px;
 }
 
+.footer-container img {
+    height: 2rem;
+    width: 2rem;
+}
+
 
 /* MODAL */
 
 .modal-new-book-container {
+    display: none;
+
     position: fixed;
     z-index: 1;
     left: 0;
@@ -147,3 +155,10 @@ button, input {
     align-items: center;
     gap: 15px;
 }
+
+.modal-new-book-content form input[type='text'], 
+.modal-new-book-content form input[type='number']{
+    cursor: text;
+}
+
+
