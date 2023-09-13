@@ -76,16 +76,14 @@ button, input {
 }
 
 .book-grid {
-    margin: 40px;
-    display: flex;
-    flex-wrap: wrap;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
     justify-content: center;
 }
 
 .book-card {
-    min-width: 300px;
-    max-width: 300px;
     background-color: rgb(var(--header-rgb));
     border-radius: var(--border-radius);
     box-shadow: 0rem 0.2rem 2rem rgba(var(--shadow-color), 0.3);
@@ -93,7 +91,6 @@ button, input {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex: 1;
     gap: 20px;
 }
 
