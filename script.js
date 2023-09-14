@@ -13,6 +13,10 @@ class Book {
         
     }
 
+    toggleHaveRead() {
+        this.haveRead = this.haveRead ? false : true;
+    }
+
     info() {
         if(haveRead) {
             return `${this.title} by ${this.author}, ${this.pages} pages, have read`;
@@ -31,22 +35,42 @@ class Library {
         this.bookList.push(bookToAdd);
     }
 
-    removeBook(bookToRemove) {
+    removeBook(title) {
         this.bookList = this.bookList.filter((book) => book.title !== title);
+    }
+
+    removeAllBooks() {
+        this.bookList.length = 0;
     }
 }
 
 const library = new Library();
 
 /**
- * What to do
- * 5 remove cards
- * 6 remove all cards
- * 7 change read to "not read"
+ * What left to do:
+ * ----------------
+ * click out of overlay by clicking to the side
+ * error handle multiple titles of the same book
  */
+
+// 6 remove all cards
+const removeAllBtn = document.getElementById("removeAllBooks");
+removeAllBtn.addEventListener('click', () => {
+    library.removeAllBooks();
+    updateBooksGrid();
+});
+
+const sampleLibraryBtn = document.getElementById("sampleLibrary");
+sampleLibraryBtn.addEventListener('click', () => {
+    library.removeAllBooks();
+    library.addBook(new Book("The Hobbit", "J. R. R. Tolkien", "310", false));
+    library.addBook(new Book("The Hitchhiker's Guide To The Galaxy", "Douglas Adams", "216", true));
+    updateBooksGrid();
+});
 
 // 1 Target the "+ Add book" button and display the modal on click
 const modal = document.getElementById('modalNewBook');
+
 const addBook = document.getElementById("addBook");
 addBook.addEventListener('click', () => {
     modal.style.display = 'block';
@@ -59,24 +83,40 @@ const booksGrid = document.getElementById('bookGrid');
 
 const newBookForm = document.getElementById('newBookForm');
 
-function getBookFromInput() {
-    const title = `"${document.getElementById('title').value}"`;
-    const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const haveRead = document.getElementById('haveRead').checked;
-
-    return new Book(title, author, pages, haveRead);
-}
-
-const addBookOnSubmit = (event) => {
+function addBookOnSubmit(event) {
     event.preventDefault();
 
-    const bookToAdd = getBookFromInput();
-    console.log(`Book to add: ${bookToAdd.info()}`);
+    // check for title error
+    const title = document.getElementById('title').value;
+    if(library.bookList.find((book) => book.title == title)) {
+        const titleElem = document.getElementById('title');
+        if(!titleElem.firstElementChild){
+            errorTitle = document.createElement("p");
+            errorTitle.textContent = "Book already in Library";
+            console.log(errorTitle);
+            errorTitle.setAttribute('id', 'errTitle');
+            titleElem.appendChild(errorTitle);
+        }
+    } else {
 
-    library.addBook(bookToAdd);
 
-    updateBooksGrid();
+        const author = document.getElementById('author').value;
+        const pages = document.getElementById('pages').value;
+        const haveRead = document.getElementById('haveRead').checked;
+        const bookToAdd = new Book(title, author, pages, haveRead);
+        
+        newBookForm.reset();
+        
+        if(document.getElementById('title').firstChildElement)
+        {
+            document.getElementById('title').removeChild(document.getElementById('title'));
+        }
+
+        library.addBook(bookToAdd);
+
+        updateBooksGrid();
+
+    }
 }
 
 newBookForm.onsubmit = addBookOnSubmit;
@@ -88,7 +128,8 @@ function createCard(book) {
     bookCard.classList.add('book-card');
 
     const title = document.createElement('p');
-    title.textContent = `${book.title}`;
+    title.classList.add('title');
+    title.textContent = `"${book.title}"`;
     bookCard.appendChild(title);
 
     const author = document.createElement('p');
@@ -96,7 +137,7 @@ function createCard(book) {
     bookCard.appendChild(author);
 
     const pages = document.createElement('p');
-    pages.textContent = `${book.pages}`;
+    pages.textContent = `${book.pages} pages`;
     bookCard.appendChild(pages);
 
     const buttonGroup = document.createElement('div');
@@ -104,17 +145,20 @@ function createCard(book) {
 
     const readBtn = document.createElement('button');
     readBtn.classList.add('have-read');
+    readBtn.onclick = toggleRead;
     if(book.haveRead) {
         readBtn.textContent = 'Have read'
         readBtn.style.backgroundColor = '#D1FFBD';
     }else{
         readBtn.textContent = 'Not read'
-        readBtn.style.backgroundColor = '#FF474C';
+        readBtn.style.backgroundColor = '#FF8488';
     }
     buttonGroup.appendChild(readBtn);
 
     const delBtn = document.createElement('button')
-    readBtn.classList.add('delete');
+    delBtn.classList.add('delete');
+    delBtn.textContent = 'Delete';
+    delBtn.onclick = removeCard;
     buttonGroup.appendChild(delBtn);
 
     bookCard.appendChild(buttonGroup);
@@ -131,19 +175,22 @@ function updateBooksGrid() {
 }
 
 
+// 5 remove cards
+function removeCard(e) {
+    const titleToRemove = e.target.parentNode.parentNode.firstChild.textContent.replaceAll('"', '');
+    library.removeBook(titleToRemove);
+    updateBooksGrid();
+}
 
-function addBookToLibrary() {
-    // do stuff here
+// 7 change read to "not read"
+function toggleRead(e) {
+    const titleToToggleRead = e.target.parentNode.parentNode.firstChild.textContent.replaceAll('"', '');
+
+    library.bookList.find((book) => book.title == titleToToggleRead).toggleHaveRead();
+    updateBooksGrid();
+    return;
 }
 
 
 
-const theHobbit = new Book('The Hobbit', 'Tolkien', 295, true);
-const dogs = new Book('who let the dogs out: my life as a WW2 fighter jet pilot', 'Joe Pera', 69, false);
 
-const myLibrary = [theHobbit, dogs];
-
-for(let book of myLibrary)
-{
-    console.log(book.title);
-}

@@ -53,6 +53,12 @@ button, input {
     align-items: center;
 }
 
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .header-container button {
     background-color: rgb(var(--content-background-rgb));
 }
@@ -76,14 +82,16 @@ button, input {
 }
 
 .book-grid {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    margin: 40px;
+    display: flex;
+    flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
 }
 
 .book-card {
+    max-width: 300px;
+    min-width: 300px;
     background-color: rgb(var(--header-rgb));
     border-radius: var(--border-radius);
     box-shadow: 0rem 0.2rem 2rem rgba(var(--shadow-color), 0.3);
@@ -91,13 +99,14 @@ button, input {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
 }
 
 .button-group {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 
@@ -154,6 +163,10 @@ button, input {
     justify-content: center;
     align-items: center;
     gap: 15px;
+}
+
+.modal-new-book-content form #errTitle {
+    z-index: 3;
 }
 
 .modal-new-book-content form input[type='text'], 
