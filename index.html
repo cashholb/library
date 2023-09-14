@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
+    <link rel="icon" href="stack-of-books.png">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet">
-
 </head>
 <body>
     
@@ -18,32 +18,15 @@
         <div class="header">
             <div class="header-container">
                 <h1>library</h1>
-                <button type="button">Remove all</button>
+                <div class="header-buttons">
+                    <button type="button" id="sampleLibrary">Sample Library</button>
+                    <button type="button" id="removeAllBooks">Remove all</button>
+                </div>
             </div>
         </div>
         <div class="content">
             <button class="add-book" id="addBook">+ Add book</button>
             <div class="book-grid" id="bookGrid">
-                <div class="book-card">
-                    <div class="title">"Title"</div>
-                    <div class="author">Author</div>
-                    <div class="pages-read">99</div>
-                    <div class="button-group">
-                        <button class="have-read">Not Read</button>
-                        <button class="delete">Delete</button>
-                    </div>
-                </div>
-                <div class="book-card">
-                    <p>"Titleaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"</p>
-                    <p>Author</p>
-                    <p>99</p>
-                    <div class="button-group">
-                        <button class="have-read">Not Read</button>
-                        <button class="delete">Delete</button>
-                    </div>
-                </div>
-                
-                
             </div>
         </div>
         <footer class="footer">
