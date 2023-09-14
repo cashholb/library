@@ -88,35 +88,17 @@ function addBookOnSubmit(event) {
 
     // check for title error
     const title = document.getElementById('title').value;
-    if(library.bookList.find((book) => book.title == title)) {
-        const titleElem = document.getElementById('title');
-        if(!titleElem.firstElementChild){
-            errorTitle = document.createElement("p");
-            errorTitle.textContent = "Book already in Library";
-            console.log(errorTitle);
-            errorTitle.setAttribute('id', 'errTitle');
-            titleElem.appendChild(errorTitle);
-        }
-    } else {
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const haveRead = document.getElementById('haveRead').checked;
+    const bookToAdd = new Book(title, author, pages, haveRead);
+    
+    newBookForm.reset();
+    
+    library.addBook(bookToAdd);
 
+    updateBooksGrid();
 
-        const author = document.getElementById('author').value;
-        const pages = document.getElementById('pages').value;
-        const haveRead = document.getElementById('haveRead').checked;
-        const bookToAdd = new Book(title, author, pages, haveRead);
-        
-        newBookForm.reset();
-        
-        if(document.getElementById('title').firstChildElement)
-        {
-            document.getElementById('title').removeChild(document.getElementById('title'));
-        }
-
-        library.addBook(bookToAdd);
-
-        updateBooksGrid();
-
-    }
 }
 
 newBookForm.onsubmit = addBookOnSubmit;

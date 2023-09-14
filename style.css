@@ -165,10 +165,6 @@ button, input {
     gap: 15px;
 }
 
-.modal-new-book-content form #errTitle {
-    z-index: 3;
-}
-
 .modal-new-book-content form input[type='text'], 
 .modal-new-book-content form input[type='number']{
     cursor: text;
