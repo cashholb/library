@@ -31,6 +31,11 @@ class Library {
         this.bookList = []
     }
 
+    getBookTitles() {
+        
+        return this.bookList.map((book) => book.title);
+    }
+
     addBook(bookToAdd) {
         this.bookList.push(bookToAdd);
     }
@@ -45,13 +50,6 @@ class Library {
 }
 
 const library = new Library();
-
-/**
- * What left to do:
- * ----------------
- * click out of overlay by clicking to the side
- * error handle multiple titles of the same book
- */
 
 // 6 remove all cards
 const removeAllBtn = document.getElementById("removeAllBooks");
@@ -173,6 +171,21 @@ function toggleRead(e) {
     return;
 }
 
+// form validation: checking for duplicate titles
 
+function checkDuplicateTitle() {
+    const titleInput = document.getElementById('title');
+    console.log(library.getBookTitles())
 
+    if(library.getBookTitles().includes(titleInput.value)){
+        console.log('failed');
+        titleInput.setCustomValidity(`Cannot add duplicate title \'${titleInput.value}\'`);
+    }else{
+        titleInput.setCustomValidity("");
+    }
+}
+
+window.onload = () => {
+    document.getElementById('title').oninput = checkDuplicateTitle;
+};
 
